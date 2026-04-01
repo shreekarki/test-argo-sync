@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: presync-migration
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+        - name: migration
+          image: busybox
+          command: ["sleep", "infinity"]
+      restartPolicy: Never
